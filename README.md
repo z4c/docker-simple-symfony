@@ -4,6 +4,6 @@ A simple Symfony container to deploy rapidly a developpment environnment
 
 Requirements:
 --------------
- - Le moteur [Docker](https://docs.docker.com/engine/installation/) 
- - L'orchestrateur [Docker Compose](https://docs.docker.com/compose/install/) 
+ - A [Docker](https://docs.docker.com/engine/installation/) engine functionnal installation
+ - The [Docker Compose](https://docs.docker.com/compose/install/) script
 
