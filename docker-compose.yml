@@ -36,4 +36,4 @@ services:
       APP_VERSION: 0.0.0
       
 volumes:
-  db
+  database
