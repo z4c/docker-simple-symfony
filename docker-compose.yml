@@ -1,8 +1,8 @@
-version:  '2'
+version: "2"
 
 services:
   db:
-    image: postgresql:alpine
+    image: postgres:alpine
     container_name: db
     environment:
       POSTGRES_USER: symfony
@@ -36,4 +36,4 @@ services:
       APP_VERSION: 0.0.0
       
 volumes:
-  database
+  database:
