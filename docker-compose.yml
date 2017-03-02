@@ -1,0 +1,37 @@
+version:  '2'
+
+services:
+  db:
+    image: postgresql:alpine
+    container_name: db
+    environment:
+      POSTGRES_USER: symfony
+      POSTGRES_DB: symfony
+      POSTGRES_PASSWORD: symfony
+    ports:
+      - 5432:5432
+    volumes:
+      - database:/var/lib/postgresql/data
+
+  app:
+    build: ./symfony-dev-server
+    image: symfony-dev-server
+    container_name: app
+    volumes:
+      - .:/source
+    links:
+      - db
+    ports:
+      - 80:80
+    environment:
+      APP_SERVER_VERBOSITY: -vvv
+      APP_SERVER_HOST: 0.0.0.0
+      APP_SERVER_PROT: 80 
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: symfony
+      DATABASE_USER: symfony
+      DATABASE_PASSWORD: symfony
+      SECRET_TOKEN: MyAwesomeTokenThatNeedsToBeChanged
+      APP_VERSION: 0.0.0
+
