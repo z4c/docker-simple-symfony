@@ -34,4 +34,6 @@ services:
       DATABASE_PASSWORD: symfony
       SECRET_TOKEN: MyAwesomeTokenThatNeedsToBeChanged
       APP_VERSION: 0.0.0
-
+      
+volumes:
+  database
