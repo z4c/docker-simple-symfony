@@ -32,7 +32,7 @@ RUN apk add --update bash \
 	openssh-client \
 	curl \
 	figlet \
-	vim
+#	vim
 
 # composer installation
 RUN curl -sS https://getcomposer.org/installer | \
@@ -42,7 +42,7 @@ RUN curl -sS https://getcomposer.org/installer | \
 ADD symfony.ini /etc/php5/fpm/conf.d/
 ADD symfony.ini /etc/php5/cli/conf.d/
 
-COPY entrypoint.sh /
+COPY docker-entrypoint /
 
 WORKDIR /source
 ENTRYPOINT ["/entrypoint.sh"]

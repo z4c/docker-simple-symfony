@@ -4,26 +4,35 @@ alias sf="php app/console"
 
 [ -z "$1" ] && {
 	[ ! -d ./vendor ] && {
-	    echo "
-	    
-	    Installing composer dependencies...
-	    
-	    "
+		echo "
+
+
+		Installing composer dependencies...
+
+
+		"
 		export APP_VERSION=`git describe --abbrev=0 --tags`
 		[ -z "$SECRET_TOKEN" ] &&  
-			export SECRET_TOKEN=`git rev-parse HEAD`
+		export SECRET_TOKEN=`git rev-parse HEAD`
 		composer install --dev --no-interaction &&
 		sf cache:clear --env=dev --no-interaction
 	}
+
+
 	[[ `sf doctrine:schema:update --dump-sql` == "Nothing to update"* ]] || {
-	    echo "
-	    
-	    Updating database...
-	    
-	    "
-	    sf doctrine:schema:update --force --no-interaction 
-	    sf doctrine:migrations:migrate --no-interaction 2>/dev/null 
-		sf doctrine:fixtures:load --no-interaction 2>/dev/null 
+		echo "
+		
+
+		Updating database...
+		
+
+		"
+		sf doctrine:schema:update --force --no-interaction 
+		# https://github.com/doctrine/DoctrineMigrationsBundle	
+		sf doctrine:migrations:migrate --no-interaction 2>/dev/null
+		# https://github.com/doctrine/DoctrineFixturesBundle
+		sf doctrine:fixtures:load --no-interaction 2>/dev/null
+		# https://github.com/willdurand/BazingaFakerBundle
 		sf faker:populate --no-interaction 2>/dev/null 
 	}
 	
